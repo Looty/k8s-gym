@@ -1,0 +1,6 @@
+# k3d configuration file, saved as e.g. /home/me/myk3dcluster.yaml
+apiVersion: k3d.io/v1alpha4 # this will change in the future as we make everything more stable
+kind: Simple
+metadata:
+  name: k8s-gym
+servers: 1

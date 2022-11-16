@@ -1,0 +1,16 @@
+domain: k8s.gym
+layout:
+- go.kubebuilder.io/v3
+projectName: k8s-gym
+repo: github.com/Looty/k8s-gym
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: k8s.gym
+  group: gym
+  kind: Question
+  path: github.com/Looty/k8s-gym/api/v1
+  version: v1
+version: "3"

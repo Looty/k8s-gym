@@ -1,0 +1,24 @@
+# permissions for end users to edit questions.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: question-editor-role
+rules:
+- apiGroups:
+  - gym.k8s.gym
+  resources:
+  - questions
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - gym.k8s.gym
+  resources:
+  - questions/status
+  verbs:
+  - get

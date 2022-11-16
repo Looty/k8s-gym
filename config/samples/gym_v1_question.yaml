@@ -1,0 +1,12 @@
+apiVersion: gym.k8s.gym/v1
+kind: Question
+metadata:
+  name: one
+spec:
+  description: Back image check
+  tip: aaa
+  answer: as
+  validationChecks:
+    - name: image
+      cmd: kubectl get deployments/coredns -n kube-system -o=jsonpath='{.status.availableReplicas}'
+      expectedResult: "1"

@@ -1,0 +1,81 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.9.2
+  creationTimestamp: null
+  name: questions.gym.k8s.gym
+spec:
+  group: gym.k8s.gym
+  names:
+    kind: Question
+    listKind: QuestionList
+    plural: questions
+    singular: question
+  scope: Cluster
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: Question is the Schema for the questions API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: QuestionSpec defines the desired state of Question
+            properties:
+              answer:
+                maxLength: 512
+                minLength: 1
+                type: string
+              description:
+                maxLength: 256
+                minLength: 3
+                type: string
+              tip:
+                maxLength: 256
+                minLength: 3
+                type: string
+              validationChecks:
+                items:
+                  properties:
+                    cmd:
+                      minLength: 3
+                      type: string
+                    expectedResult:
+                      type: string
+                    name:
+                      maxLength: 36
+                      minLength: 3
+                      type: string
+                  required:
+                  - cmd
+                  - expectedResult
+                  - name
+                  type: object
+                type: array
+            required:
+            - answer
+            - description
+            - tip
+            - validationChecks
+            type: object
+          status:
+            description: QuestionStatus defines the observed state of Question
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
